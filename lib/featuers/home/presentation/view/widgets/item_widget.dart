@@ -1,11 +1,11 @@
 import 'package:bella_app/core/utilies/app_colors.dart';
-import 'package:bella_app/core/utilies/app_images.dart';
-import 'package:bella_app/core/utilies/app_texts.dart';
+import 'package:bella_app/featuers/home/presentation/controller/home_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemWidget extends StatelessWidget {
-  const ItemWidget({super.key});
-
+  const ItemWidget({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,10 +22,10 @@ class ItemWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(AppImages.burger,width: 96,height: 96,),
+              Image.asset(Provider.of<HomeProvider>(context).items[index].image,width: 80,height: 80,),
               const SizedBox(height: 10,),
               Text(
-                AppTexts.beafBurger,
+                Provider.of<HomeProvider>(context).items[index].title,
                 style: TextStyle(
                   color: AppColors.black,
                   fontWeight: FontWeight.w500,
@@ -34,7 +34,7 @@ class ItemWidget extends StatelessWidget {
               ),
               const SizedBox(height: 14,),
               Text(
-                "7.5 \$",
+                "${Provider.of<HomeProvider>(context).items[index].price} \$",
                 style: TextStyle(
                   color: AppColors.orange,
                   fontWeight: FontWeight.w700,
@@ -50,8 +50,15 @@ class ItemWidget extends StatelessWidget {
             radius: 20,
             backgroundColor: AppColors.orange.withOpacity(0.1),
             child: IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.favorite_border_outlined,color: AppColors.orange,),
+              onPressed: (){
+                Provider.of<HomeProvider>(context,listen: false).favOrNot(index);
+              },
+              icon: Icon(
+                Provider.of<HomeProvider>(context,listen: false).items[index].favOrNot == false?Icons.favorite_border_outlined
+                    :Icons.favorite,
+
+                color: AppColors.orange,
+              ),
             ),
           ),
         )

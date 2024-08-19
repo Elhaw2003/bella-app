@@ -1,8 +1,10 @@
 import 'package:bella_app/core/utilies/app_colors.dart';
 import 'package:bella_app/core/utilies/app_images.dart';
 import 'package:bella_app/core/utilies/app_texts.dart';
+import 'package:bella_app/featuers/home/presentation/controller/home_provider.dart';
 import 'package:bella_app/featuers/home/presentation/view/widgets/item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -26,7 +28,7 @@ class HomeBody extends StatelessWidget {
               SizedBox(height: 24,),
           ),
           SliverGrid.builder(
-            itemCount: 5,
+            itemCount: Provider.of<HomeProvider>(context).items.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 16.0, // Vertical spacing between items
@@ -34,7 +36,9 @@ class HomeBody extends StatelessWidget {
               childAspectRatio: 1.0,
             ),
             itemBuilder: (context, index) {
-              return ItemWidget();
+              return ItemWidget(
+                index: index,
+              );
             },
           )
         ],
