@@ -47,12 +47,10 @@ class FavoruitScreen extends StatelessWidget {
               radius: 20,
               backgroundColor: AppColors.orange.withOpacity(0.1),
               child: IconButton(
-                onPressed: (){
-                  Provider.of<HomeProvider>(context,listen: false).favOrNot(index);
-                },
+                onPressed: (){},
                 icon: Icon(
-                  Provider.of<HomeProvider>(context,listen: false).items[index].favOrNot == false?Icons.favorite_border_outlined
-                      :Icons.favorite,
+
+                      Icons.favorite,
 
                   color: AppColors.orange,
                 ),

@@ -37,12 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.white,
         selectedItemColor: AppColors.black,
         unselectedItemColor: AppColors.grey,
-        selectedLabelStyle: TextStyle(
+        selectedLabelStyle: const TextStyle(
             fontFamily: AppFonts.ReadexProRegular,
             fontSize: 12,
             fontWeight: FontWeight.w400
         ),
-        unselectedLabelStyle: TextStyle(
+        unselectedLabelStyle: const TextStyle(
             fontFamily: AppFonts.ReadexProRegular,
             fontSize: 12,
             fontWeight: FontWeight.w400
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: AppTexts.home,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_outlined),
+              icon: Icon(Icons.favorite),
               label: AppTexts.Favorite
           ),
         ],
