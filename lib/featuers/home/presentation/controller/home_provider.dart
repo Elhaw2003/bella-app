@@ -42,4 +42,10 @@ class HomeProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+  void deleteItem(int index) {
+    settingsBox.deleteAt(index);
+    items.removeAt(index);
+    notifyListeners();
+  }
+
 }

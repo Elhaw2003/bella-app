@@ -8,6 +8,7 @@ import '../../../../core/data/model/item_model.dart';
 
 class FavoruitScreen extends StatelessWidget {
   const FavoruitScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<ItemModel> favList = Provider.of<HomeProvider>(context).items.where((foodModel) => foodModel.favOrNot==true).toList() ;
@@ -47,11 +48,15 @@ class FavoruitScreen extends StatelessWidget {
               radius: 20,
               backgroundColor: AppColors.orange.withOpacity(0.1),
               child: IconButton(
-                onPressed: (){},
+                onPressed: (){
+                  final provider =
+                  Provider.of<HomeProvider>(context, listen: false);
+                  final originalIndex =
+                  provider.items.indexOf(favList[index]);
+                  provider.favOrNot(originalIndex);
+                },
                 icon: Icon(
-
-                      Icons.favorite,
-
+                  Icons.favorite,
                   color: AppColors.orange,
                 ),
               ),
